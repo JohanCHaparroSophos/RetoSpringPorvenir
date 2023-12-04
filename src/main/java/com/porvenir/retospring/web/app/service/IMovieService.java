@@ -1,13 +1,16 @@
 package com.porvenir.retospring.web.app.service;
 
-import com.porvenir.retospring.web.app.entity.Movie;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.porvenir.retospring.web.app.entity.MovieEntity;
 
 public interface IMovieService {
 
-	public Movie getMovieById(Long idMovie);
+	public MovieEntity getMovieById(Integer idMovie) throws JsonProcessingException;
+	
+	public MovieEntity registerMovie(MovieEntity movie);
 
-	public Movie updateMovieById(Movie movie);
+	public MovieEntity updateMovieById(MovieEntity movie);
 
-	public boolean deleteMovieById(Long idMovie);
+	public boolean deleteMovieById(Integer idMovie);
 
 }

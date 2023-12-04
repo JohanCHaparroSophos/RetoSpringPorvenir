@@ -1,7 +1,9 @@
 package com.porvenir.retospring.web.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -14,10 +16,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Movie {
+@Table(name="movie")
+public class MovieEntity {
 
 	@Id
-	private Long episodeId;
+	private Integer id;
+	private Integer episodeId;
 	private String title;
 	private String releaseDate;
 	
