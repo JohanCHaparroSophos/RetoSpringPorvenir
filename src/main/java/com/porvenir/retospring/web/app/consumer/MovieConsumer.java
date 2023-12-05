@@ -18,13 +18,8 @@ public class MovieConsumer {
 		ObjectMapper objectMapper = new ObjectMapper();
 		MovieDto resp = null;
 		String sBody = "";
-//		try {
-			sBody = movieProxy.findFilmById(id);
-			System.out.println("sBody: " + sBody);
-			resp = objectMapper.readValue(sBody, MovieDto.class);
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		}
+		sBody = movieProxy.findFilmById(id);
+		resp = objectMapper.readValue(sBody, MovieDto.class);
 		return resp;
 	}
 }
