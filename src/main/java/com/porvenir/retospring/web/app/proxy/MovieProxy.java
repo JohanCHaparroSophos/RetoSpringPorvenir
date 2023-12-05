@@ -21,8 +21,6 @@ public class MovieProxy {
 		RestTemplate restTemplate = new RestTemplate();
 		String url = URL_BASE + "/" + id;
 		ResponseEntity<MovieDto> response = restTemplate.exchange(url, HttpMethod.GET, null, MovieDto.class);
-		System.out.println("response: " + response.getStatusCodeValue());
-		System.out.println("response: " + response.getHeaders());
 		if (response.getStatusCode() == HttpStatus.OK) {
 			response.getBody().setId(Integer.valueOf(id));
 			resp = response.getBody().toString();

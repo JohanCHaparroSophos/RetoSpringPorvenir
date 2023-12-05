@@ -19,24 +19,25 @@ public class MovieServiceImpl implements IMovieService {
 	@Autowired
 	private MovieConsumer movieConsumer;
 	
-//	@Autowired
-//	private ModelMapper modelMapper;
-
 	@Override
 	public MovieEntity getMovieById(Integer idMovie) throws JsonProcessingException {
 		MovieEntity movie = new MovieEntity();
-		MovieDto dto = movieConsumer.findFilmById(Integer.toString(idMovie));
-		movie.setId(idMovie);
-		movie.setEpisodeId(dto.getEpisodeId());
-		movie.setTitle(dto.getTitle());
-		movie.setReleaseDate(dto.getReleaseDate());
-		this.registerMovie(dto);
-		return movie;
+		MovieDto dto = new MovieDto();
+		dto = movieConsumer.findFilmById(Integer.toString(idMovie));
+		if (dto != null) {
+			movie.setId(idMovie);
+			movie.setEpisodeId(dto.getEpisodeId());
+			movie.setTitle(dto.getTitle());
+			movie.setReleaseDate(dto.getReleaseDate());
+			this.registerMovie(dto);
+			return movie;
+		}else {
+			return null;
+		}
 	}
 
 	@Override
 	public MovieEntity registerMovie(MovieDto movie) {
-////		MovieEntity entity = modelMapper.map(movie, MovieEntity.class);
 		MovieEntity entity = new MovieEntity();
 		entity.setId(movie.getId());
 		entity.setEpisodeId(movie.getEpisodeId());
@@ -52,7 +53,6 @@ public class MovieServiceImpl implements IMovieService {
 		movieEntity.setEpisodeId(movie.getEpisodeId());
 		movieEntity.setTitle(movie.getTitle());
 		movieEntity.setReleaseDate(movie.getReleaseDate());
-//		this.registerMovie(movieEntity);
 		return movieRepository.save(movieEntity);
 	}
 

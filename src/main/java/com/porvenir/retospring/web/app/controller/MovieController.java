@@ -41,18 +41,13 @@ public class MovieController {
 			}
 			return ResponseEntity.status(status).body(responseMap);
 		} catch (Exception e) {
-			System.out.println("error: " + e.getMessage());
 			String error = e.getMessage().substring(0, 3);
 			if (error.equals("404")) {
-				System.out.println("if 404: " );
 				if(!id.matches("\\d+")) {
-					System.out.println("No es numerico" );
 					responseMap.put("message", "Error en el sistema");
 					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseMap);
 				}
 				else {
-					System.out.println("No existe" );
-//					responseMap.put("message", "Error en el sistema");
 					responseMap.put("movie", response);
 					return ResponseEntity.status(HttpStatus.NO_CONTENT).body(responseMap);
 				}
@@ -64,7 +59,6 @@ public class MovieController {
 	
 	@PutMapping("/updateMovie")
 	public ResponseEntity<Map<String, Object>> updateMovie(@RequestBody MovieDto movie)  {
-		System.out.println("movie controller " + movie);
 		Map<String, Object> response = new HashMap<>();
 		MovieEntity movieEntity = null;
 		HttpStatus status = null;
@@ -93,7 +87,6 @@ public class MovieController {
 	
 	@DeleteMapping("/deleteMovie/{idMovie}")
 	public ResponseEntity<?> deleteFilm(@PathVariable("idMovie") Integer idMovie){
-		System.err.println("id " + idMovie);
 		boolean response = true;
 		HttpStatus status = null;
 		try {
